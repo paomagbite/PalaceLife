@@ -20,7 +20,6 @@ public:
 
 private:
     Time *time_;
-    EventQueue queue_;
 };
 
 class ScheduledEvent : public Event {

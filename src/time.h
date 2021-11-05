@@ -23,6 +23,8 @@ public:
 
     // get time to schedule events
     int getTime();
+
+    std::string getTimeFormated();
     
 
 private:
@@ -32,6 +34,9 @@ private:
     int year_;
     // this is time represented as an integer of minutes
     int time_;
+
+    // stores formated string
+    std::string timeFormated_;
 
 };
 

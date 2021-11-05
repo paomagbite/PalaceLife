@@ -33,3 +33,25 @@ void Time::timeAdv(int timeDiff) {
 int Time::getTime() {
     return time_;
 }
+
+std::string Time::getTimeFormated(){
+    this->timeFormated_ = "";
+
+    int timeTemp = time_;
+
+    this->year_ = timeTemp / 525600;
+    timeTemp = timeTemp % 525600;
+    this->day_ = timeTemp / 1440;
+    timeTemp = timeTemp % 1440;
+    this->hour_ = timeTemp / 60;
+    timeTemp = timeTemp % 60;
+    this->minute_ = timeTemp;
+
+    if (hour_ < 10) { timeFormated_ = "0" + std::to_string(hour_); }
+    else { timeFormated_ = std::to_string(hour_); }
+    timeFormated_ += ":";
+    if (minute_ < 10) {timeFormated_ += "0" + std::to_string(minute_); }
+    else { timeFormated_ += std::to_string(minute_); }
+
+    return timeFormated_;
+}
