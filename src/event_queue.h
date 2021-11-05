@@ -27,16 +27,6 @@ public:
     void addEvent(Event* event);
     void addEvent(ScheduledEvent* event);
     //void removeEvent(); // i am not sure how to implemnnt this
-                          // so it removes the desired event in case it is needed.
-
-private:
-    void orderEvent_();
+                          // so it removes the desired event in case it is needed
 };
-
-struct sort_events {
-    inline bool operator() (const Event& event1, const Event& event2) {
-        return (event1.scheduledTime < event2.scheduledTime);
-    }
-};
-
 #endif // EVENT_QUEUE_H
