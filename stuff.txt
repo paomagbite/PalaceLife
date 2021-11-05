@@ -1,0 +1,4 @@
+Stuff to look into
+- Procedural generation
+    - Cellular automata
+    - Agent based simulation
