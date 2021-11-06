@@ -16,6 +16,8 @@
 #include <vector>
 
 #include "action.h"
+#include "action_needs.h"
+#include "world.h"
 
 //Base interface for actor behavior
 class ActorInput {
@@ -32,13 +34,16 @@ private:
 
 class AiInput : public ActorInput {
 public:
-    AiInput(Time* time, Needs* needs);
+    AiInput(Time* time, Actor* actor);
 
     void update();
 
 private:
     Time* time_;
-    Needs* needs_;
+    Actor* actor_;
+    Action* destination_;
+
+    std::vector<Location*> pathToAction_;
 };
 
 #endif // VITAE_SRC_CONTROLLER_H

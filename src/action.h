@@ -13,6 +13,7 @@
 
 #include "time.h"
 #include "needs.h"
+#include "actor.h"
 
 // base action class
 class Action {
@@ -22,7 +23,7 @@ public:
     // destructor to destroy the action, needed for memory I think
     virtual ~Action() {};
     // base update function, needs to be implmented for evey action
-    virtual void run() = 0;
+    virtual void run(Actor* actor) = 0;
 
     int startTime;
     int endTime;
@@ -41,70 +42,6 @@ public:
 protected:
     bool statusDoing = true;
 
-};
-
-class EmptyAction : public Action {
-public:
-    EmptyAction() {
-        statusDoing = false;
-    }
-
-    ~EmptyAction() override {};
-
-    void run() override {
-        // empty for many reasons
-    }
-};
-
-
-// eat action, satiate hunger. Simplistic now
-class Eat : public Action {
-public:
-    Eat(Time* time, Needs* needs) {
-        durationMin = 30;
-        startTime = time->getTime();
-        endTime = startTime + durationMin;
-        this->needs_ = needs;
-        std::cout << "====================Actor started eating\n"; 
-    }
-
-    ~Eat() override {};
-
-    void run() override {
-        this->needs_->hunger += 75.f;
-        std::cout << "====================Actor finshed eating!\n";
-        statusDoing = false;
-    }
-
-private:
-    Needs* needs_;
-
-}; 
-
-class Sleep : public Action {
-public:
-    Sleep(Time* time, Needs* needs) {
-        durationMin = 480; //rudimoentary for now but this makes the character sleep for 8 hours
-        startTime = time->getTime();
-        endTime = startTime + durationMin;
-        this->needs_ = needs;
-        
-        std::cout << "=================Actor started sleeping\n";
-
-    }
-
-    ~Sleep() override {};
-
-    void run() override {
-        this->needs_->energy = 100;
-        std::cout << "=================Actor finshed sleeping\n";
-        statusDoing = false;
-    }
-
-    
-    
-private:
-    Needs* needs_;
 };
 
 #endif
